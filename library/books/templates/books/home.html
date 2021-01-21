@@ -5,13 +5,9 @@
         <ul id="books-container">
             {% for book in books %}
                 <li>
-                    <a href="{% url 'book-show' book_id=book.id %}">
-                        {{ book.name }}
-                    </a>
-                    <!-- {% if dog.owner %} <span class="helptext">(adopted)</span> {% endif %} -->
+                        <p>{{ book.title }}</p>
                 </li>
             {% endfor %}
         </ul>
-    <!-- <a href="{% url 'book-create' %}"> <button>Add new book</button></a> -->
     </body>
 </html>
