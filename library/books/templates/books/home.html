@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <h1>Welcome to the Library!</h1>
+        Here are all your favourite books!
+        <ul id="books-container">
+            {% for book in books %}
+                <li>
+                    <a href="{% url 'book-show' book_id=book.id %}">
+                        {{ book.name }}
+                    </a>
+                    <!-- {% if dog.owner %} <span class="helptext">(adopted)</span> {% endif %} -->
+                </li>
+            {% endfor %}
+        </ul>
+    <!-- <a href="{% url 'book-create' %}"> <button>Add new book</button></a> -->
+    </body>
+</html>
