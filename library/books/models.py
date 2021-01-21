@@ -11,8 +11,8 @@ class Author(models.Model):
 class Book(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    author = models.ForeignKey(Author, null=True, on_delete=models.SET_NULL)
-    borrower =models.ForeignKey(User, on_delete=models.SET_NULL)
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
+    borrower =models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f'{self.title} ({self.author})'

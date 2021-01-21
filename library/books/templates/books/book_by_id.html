@@ -3,5 +3,10 @@
         <h1>Is the book by id page rendering</h1>
         <h1>{{book.title}}</h1>
         <h2>{{book.author}}</h2> 
+        {% if book.borrower %}
+            <p>Book is already borrowed</p>>
+        {% else %}
+            <p>Please borrow  me</p>
+        {% endif %}
     </body>
 </html>

@@ -9,13 +9,13 @@
                 <a href="{% url 'signup' %}">Sign Up</a>
             {% endif %}
         </nav>
-        <main>
+        <main> 
             <h1>Welcome to the Library!</h1>
             <p>Here are all your favourite books!</p>
             <ul id="books-container">
                 {% for book in books %}
                     <li>
-                            <p>{{ book.title }}</p>
+                            <a href="{% url 'books-show' book_id=book.id %}">{{ book.title }}</a>
                     </li>
                 {% endfor %}
             </ul>
