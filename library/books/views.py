@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
 
+from .forms import NewBookForm, BorrowBookForm
 from .models import Book, Author
 
 # Create your views here.
@@ -16,26 +16,32 @@ def not_found_404(request, exception):
     return render(request, 'adoption/404.html', data)
 
 @login_required
-def show(req, book_id):
-    # data = { 'books' : Book.objects.get(pk={book_id})}
-    # return HttpResponse(f'<h3>Book number {book_id}</h3>')
-    if Book.objects.filter(id=book_id).exists():
-        book = get_object_or_404(Book, pk=book_id)
-        data = {
-            'book' : book
-        }
-        return render(req, 'books/book_by_id.html', data)
+def create(request):
+    if request.method == 'POST':
+        book = NewBookForm(request.POST)
+        if book.is_valid():
+            book_id = book.save().id
+            return redirect("books-show", book_id=book_id)
     else:
-        return HttpResponse("We do not have a book with that ID")
-    
+        form = NewBookForm()
+    data = {'form': form}
+    return render(request, 'books/new.html', data)
 
 
-
-
-# def specific_joke(request, joke_id):
-# if Joke.objects.filter(id=joke_id).exists():
-#     return HttpResponse(
-#         Joke.objects.get(id=joke_id).text
-#     )
-# else:
-#     return HttpResponse("Sorry, no joke with that ID exists")
+@login_required
+def show(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    if request.method == "POST":
+        form = BorrowBookForm(request.POST)
+        if form.is_valid():
+            book.borrower = request.user
+            book.save()
+            return redirect('books-show', book_id=book_id)
+    else:
+        form = BorrowBookForm(initial={'borrower': request.user})
+    data = {
+        'book': book,
+        'form': form
+    }
+    return render(request, 'books/book_by_id.html', data)
+   
