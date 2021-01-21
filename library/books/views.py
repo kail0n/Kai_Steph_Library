@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 
 from .models import Book, Author
@@ -14,7 +15,7 @@ def not_found_404(request, exception):
     data = { 'err': exception}
     return render(request, 'adoption/404.html', data)
 
-
+@login_required
 def show(req, book_id):
     # data = { 'books' : Book.objects.get(pk={book_id})}
     # return HttpResponse(f'<h3>Book number {book_id}</h3>')

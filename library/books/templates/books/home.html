@@ -1,13 +1,25 @@
 <html>
     <body>
-        <h1>Welcome to the Library!</h1>
-        Here are all your favourite books!
-        <ul id="books-container">
-            {% for book in books %}
-                <li>
-                        <p>{{ book.title }}</p>
-                </li>
-            {% endfor %}
-        </ul>
+        <nav>
+            {% if user.is_authenticated %}
+                <span>Hi {{ user }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </nav>
+        <main>
+            <h1>Welcome to the Library!</h1>
+            <p>Here are all your favourite books!</p>
+            <ul id="books-container">
+                {% for book in books %}
+                    <li>
+                            <p>{{ book.title }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </main>
+        
     </body>
 </html>
