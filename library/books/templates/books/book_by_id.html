@@ -1,16 +1,26 @@
 <html>
+    <head>
+        <style>
+            input { display: block; padding: 10px; text-align: center; }
+            .bookById { border: 14px solid rgb(180, 120, 170); text-align: center; }
+            #borrowBtn { display: flex; justify-content: center; }
+        </style>
+    </head>
     <body>
-        <h1>Is the book by id page rendering</h1>
-        <h1>{{book.title}}</h1>
-        <h2>{{book.author}}</h2> 
-        {% if book.borrower %}
-            <p>Book is already borrowed</p>
-        {% else %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Please borrow me, I beg you">
-        </form>
-        {% endif %}
+        <div class="bookById">
+            <h1>{{book.title}}</h1>
+            <h2>{{book.author}}</h2> 
+            {% if book.borrower %}
+                <p>Book is already borrowed</p>
+            {% else %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div id="borrowBtn">
+                    <input type="submit" value="Please borrow me, I beg you">
+                </div>
+            </form>
+            {% endif %}
+        </div>
     </body>
 </html>

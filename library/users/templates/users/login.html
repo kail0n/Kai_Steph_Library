@@ -1,11 +1,17 @@
 <html>
-
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Login</button>
-    </form>
-</body>
+    <head>
+        <style>
+            #loginForm {
+                border: 14px solid rgb(180, 120, 170); text-align: center; padding: 20px; height: 100vh;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" id="loginForm">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Login</button>
+        </form>
+    </body>
 
 </html>

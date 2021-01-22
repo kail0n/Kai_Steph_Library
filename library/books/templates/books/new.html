@@ -1,6 +1,13 @@
 <html>
+    <head>
+        <style>
+            #addBookForm {
+            border: 10px solid rgb(180, 120, 170); text-align: center; padding: 20px; height: 100vh;
+            }
+        </style>
+    </head>
     <body>
-        <form method="POST">
+        <form method="POST" id="addBookForm">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Add book">

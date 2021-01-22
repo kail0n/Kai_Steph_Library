@@ -1,6 +1,13 @@
 <html>
+    <head>
+        <style>
+            #signupForm {
+                border: 10px solid rgb(180, 120, 170); text-align: center; padding: 20px; height: 100vh;
+            }
+        </style>
+    </head>
     <body>
-        <form method="POST">
+        <form method="POST" id="signupForm">
             {% csrf_token %} <!-- Django forms will not function without this additional security token-->
             {{ form.as_p }} <!-- .as_p is optional for formatting purposes -->
             <input type="submit" value="Sign Up">
