@@ -7,8 +7,6 @@ from users import views as user_views
 urlpatterns = [
 
     path("", homepage, name='books-index'),
-
-    # path("", views.home, name='books-home'),
     path("books/<int:book_id>/", show, name='books-show'),
      path("books/new/", create, name='books-create'),
 
