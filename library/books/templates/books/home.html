@@ -1,45 +1,19 @@
-<html>
-    <head>
-        <style>
-            * { box-sizing: border-box; }
-            html, body { margin: 0; }
-            a { cursor: pointer; text-decoration: none; }
-            nav a:hover { text-shadow: 1px 0px 10px rgba(0, 0, 0, 0.9); }
-            main { padding: 1.5rem; }
-            input, button { display: block; padding: 10px; text-align: center; }
-            
-            nav {
-                width: 100vw;
-                padding: 1.5rem;
-                display: flex;
-                justify-content: space-between;
-                background-color: rgb(180, 120, 170);
-            }
-        </style>
-    </head>
-    <body>
-        <nav>
-            {% if user.is_authenticated %}
-                <span>Hi {{ user }}</span>
-                <a href="{% url 'logout' %}">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'signup' %}">Sign Up</a>
-            {% endif %}
-        </nav>
-        <main> 
-            <h1>Welcome to the Library!</h1>
-            <p>Here are all your favourite books!</p>
-            <ul id="books-container">
-                {% for book in books %}
-                    <li>
-                            <a href="{% url 'books-show' book_id=book.id %}">{{ book.title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-            <div>
-                <a href="{% url 'books-create' %}"> <button>Add new book</button></a>
-            </div>
-        </main>
-    </body>
-</html>
+{% extends "books/base.html" %}
+
+{% block content %}
+<main> 
+    <h1 id="homeTitle">Welcome to the Library!</h1>
+    <p>Here are all your favourite books!</p>
+    <ul id="books-container">
+        {% for book in books %}
+            <li class="bookList">
+                <a href="{% url 'books-show' book_id=book.id %}">{{ book.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div>
+        <a href="{% url 'books-create' %}"> <button class="btn1">Add new book</button></a>
+    </div>
+</main>
+{% endblock content %}
+

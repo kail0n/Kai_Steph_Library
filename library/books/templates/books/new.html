@@ -1,16 +1,9 @@
-<html>
-    <head>
-        <style>
-            #addBookForm {
-            border: 10px solid rgb(180, 120, 170); text-align: center; padding: 20px; height: 100vh;
-            }
-        </style>
-    </head>
-    <body>
-        <form method="POST" id="addBookForm">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Add book">
-        </form>
-    </body>
-</html>
+{% extends "books/base.html" %}
+
+{% block content %}
+<form method="POST" id="addBookForm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn1" value="Add book">
+</form>
+{% endblock content %}
